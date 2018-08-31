@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import UserInput from './UserInput/userInput';
+import UserOutput from './UserOutput/userOutput';
 import './App.css';
 
 class App extends Component {
+  state = {
+    name :' Default',
+    college:'UB',
+    state: 'NY'
+  }
+
+  newNameHandler = (event) => {
+    this.setState({name: event.target.value})
+  }
+
+
+
   render() {
+    const style = {
+      backgroundColor:'#ffccb3',
+      width: '60%',
+      padding: '100px',
+      margin: '130px',
+      border: '2px solid black',
+      textAlign: 'center'
+    }
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="App" style = {style}>
+        <h1> Assignment 1 </h1>
+        <UserOutput username = {this.state.name}  />
+        <UserInput username = {this.state.name} click = {this.newNameHandler}/>
       </div>
     );
   }
