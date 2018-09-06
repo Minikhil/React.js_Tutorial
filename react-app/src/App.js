@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person/Person'
-import './App.css';
+import classes from './App.css';
 
 
 class App extends Component {
@@ -54,9 +54,12 @@ class App extends Component {
       cursor: 'pointer', ':hover':{backgroundColor: 'lightgreen', color: 'black'}
     };
 
-    const classes = [];
-
+    const assignedClasses = [];
     let persons = null;
+    let btnClass = '';
+
+
+
     if (this.state.showPersons){
       persons = (
         <div>
@@ -66,20 +69,23 @@ class App extends Component {
       );
       // style.backgroundColor = 'red';
 
-      classes.push('red'); // adding class declared in App.css
-      style[':hover'] = {backgroundColor: 'lightblue', color: 'black'};
+      // adding class declared in App.css
+      // assignedClasses.push(classes.red); 
+      // style[':hover'] = {backgroundColor: 'lightblue', color: 'black'};
+
+      btnClass = classes.Red;
 
     }
     else{
-      classes.push('bold'); // adding class declared in App.css
+      assignedClasses.push(classes.bold); // adding class declared in App.css
     }
     return (
 
-      <div className="App">
-        <h1 className={classes.join('')}> My React App! </h1>
-        
-        <button onClick ={this.switchNameHandler.bind(this, "Dan")}> Switch Name </button>
-        <button onClick ={this.togglePersonHandler} style={style}> Toggle Name </button>
+      <div className={classes.App}>
+        <h1 className={assignedClasses.join('')}> My React App! </h1>
+
+        <button onClick ={this.switchNameHandler.bind(this, "Dan")} className={btnClass}> Switch Name </button>
+        <button onClick ={this.togglePersonHandler} className={btnClass} > Toggle Name </button>
         {persons}
       </div>
 
