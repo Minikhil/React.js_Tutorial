@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person/Person'
+import Radium, {StyleRoot} from 'radium';
 import './App.css';
 
 
@@ -47,10 +48,15 @@ class App extends Component {
   }
 
   render() {
+
     const style = {
       backgroundColor: 'green',
-      color: 'white'
+      color: 'white',
+      cursor: 'pointer', ':hover':{backgroundColor: 'lightgreen', color: 'black'}
     };
+
+    const classes = [];
+
     let persons = null;
     if (this.state.showPersons){
       persons = (
@@ -59,17 +65,27 @@ class App extends Component {
         </div>
 
       );
-      style.backgroundColor = 'red';
+      // style.backgroundColor = 'red';
+
+      classes.push('red'); // adding class declared in App.css
+      style[':hover'] = {backgroundColor: 'lightblue', color: 'black'};
+
+    }
+    else{
+      classes.push('bold'); // adding class declared in App.css
     }
     return (
+      <StyleRoot>
       <div className="App">
-        <h1> My React App! </h1>
+        <h1 className={classes.join('')}> My React App! </h1>
+        //use join when more than one class in classes array
         <button onClick ={this.switchNameHandler.bind(this, "Dan")}> Switch Name </button>
         <button onClick ={this.togglePersonHandler} style={style}> Toggle Name </button>
         {persons}
       </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);
