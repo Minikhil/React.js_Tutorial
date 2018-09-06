@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Person from './Person/Person'
-import Radium, {StyleRoot} from 'radium';
 import './App.css';
 
 
@@ -75,17 +74,17 @@ class App extends Component {
       classes.push('bold'); // adding class declared in App.css
     }
     return (
-      <StyleRoot>
+
       <div className="App">
         <h1 className={classes.join('')}> My React App! </h1>
-        //use join when more than one class in classes array
+        
         <button onClick ={this.switchNameHandler.bind(this, "Dan")}> Switch Name </button>
         <button onClick ={this.togglePersonHandler} style={style}> Toggle Name </button>
         {persons}
       </div>
-      </StyleRoot>
+
     );
   }
 }
 
-export default Radium(App);
+export default App;
