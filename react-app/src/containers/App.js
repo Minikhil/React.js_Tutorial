@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import Person from './Person/Person'
+import Persons from '../components/Persons/Persons'
+import Cockpit from '../components/Cockpit/Cockpit'
 import classes from './App.css';
 
 
 class App extends Component {
   state = {
     persons: [{ id: '1', name: 'Nikhil', age: 21}, {id: '2',name: 'Sai', age: 22}, {id: '3',name: 'Toby', age: 23}],
-    showPersons: false
+    showPersons: false,
+
   }
 
   switchNameHandler = (newName) =>{
@@ -54,38 +56,40 @@ class App extends Component {
       cursor: 'pointer', ':hover':{backgroundColor: 'lightgreen', color: 'black'}
     };
 
-    const assignedClasses = [];
+
     let persons = null;
-    let btnClass = '';
+
 
 
 
     if (this.state.showPersons){
       persons = (
-        <div>
-        {this.state.persons.map((p, index) =>{return <Person name = {p.name} age={p.age} key={p.id} changed={(event) => this.nameChangedHandler(event, persons.id)} click={() => this.deletePersonHandler(index)}  />})}
-        </div>
+
+        <Persons
+          persons = {this.state.persons}
+          clicked = {this.deletePersonHandler}
+          changed = {this.nameChangedHandler}/>
+
 
       );
       // style.backgroundColor = 'red';
 
       // adding class declared in App.css
-      // assignedClasses.push(classes.red); 
+      // assignedClasses.push(classes.red);
       // style[':hover'] = {backgroundColor: 'lightblue', color: 'black'};
 
-      btnClass = classes.Red;
+
 
     }
-    else{
-      assignedClasses.push(classes.bold); // adding class declared in App.css
-    }
+
     return (
 
       <div className={classes.App}>
-        <h1 className={assignedClasses.join('')}> My React App! </h1>
-
-        <button onClick ={this.switchNameHandler.bind(this, "Dan")} className={btnClass}> Switch Name </button>
-        <button onClick ={this.togglePersonHandler} className={btnClass} > Toggle Name </button>
+        <Cockpit
+          showPersons = {this.state.showPersons}
+          person = {this.state.persons}
+          clicked = {this.togglePersonHandler}
+        />
         {persons}
       </div>
 
