@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './Person.css'
+import PropTypes from 'prop-types';
+import WithClass from '../../../hoc/WithClass'
 
 const person = (props) => {
     const style = {
@@ -7,14 +9,23 @@ const person = (props) => {
     };
     return (
 
-      <div className = {classes.Person} style = {style}>
+
+      <WithClass classes = {classes.Person} >
         <p onClick = {props.click}> My name is:  {props.name} and my age is : {props.age}</p>
         <input type="text" onChange = {props.changed} value = {props.name}/>
-      </div>
+      </WithClass>
 
 
     )
 
 };
+
+//ONLY USE ON STATEFUL Component
+// Person.propTypes = {
+//   click: propTypes.func,
+//   name: propTypes.string,
+//   age: propTypes.number,
+//   changed: propTypes.func
+// };
 
 export default person;

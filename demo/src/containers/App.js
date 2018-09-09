@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Persons from '../components/Persons/Persons'
-import Cockpit from '../components/Cockpit/Cockpit'
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 import classes from './App.css';
+import WithClass from '../hoc/WithClass';
 
 
 class App extends Component {
@@ -84,17 +85,23 @@ class App extends Component {
 
     return (
 
-      <div className={classes.App}>
+      // <div className={classes.App}>
+      <WithClass classes = {classes.App} >
         <Cockpit
+          appTitle = {this.props.title}
           showPersons = {this.state.showPersons}
           person = {this.state.persons}
           clicked = {this.togglePersonHandler}
         />
         {persons}
-      </div>
+
+      </WithClass>
+      // </div>
 
     );
   }
 }
+
+
 
 export default App;
