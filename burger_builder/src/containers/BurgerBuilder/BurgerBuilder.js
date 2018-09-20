@@ -72,9 +72,15 @@ class BurgerBuilder extends Component {
         this.setState({purchasing: true})
     }
 
-    purchaseCancelHandler = () =>{
+    purchaseCancellHandler = () =>{
         this.setState({purchasing: false})
     }
+    purchaseContinuedHandler = ()=>{
+        alert('You continue');
+    }
+
+
+
 
     render () {
       //crete copy of ingridents state
@@ -91,7 +97,7 @@ class BurgerBuilder extends Component {
       //Dynamically showOrderSummary on click of Order Now btn
       let showOrderSummary = null;
       if(this.state.purchasing){
-        showOrderSummary = (<Modal show={this.state.purchasing} modelClosed={this.purchaseCancelHandler} ><OrderSummary ingredients = {this.state.ingredients}/> </Modal>)
+        showOrderSummary = (<Modal show={this.state.purchasing} modelClosed={this.purchaseCancellHandler} ><OrderSummary ingredients = {this.state.ingredients} purchaseCancelled={this.state.purchaseCancellHandler} purchaseContinued={this.state.purchaseContinuedHandler}/> </Modal>)
       }
 
 
@@ -101,7 +107,7 @@ class BurgerBuilder extends Component {
 
         return (
             <Aux>
-                {showOrderSummary}
+                <Modal show={this.state.purchasing} modelClosed={this.purchaseCancellHandler} ><OrderSummary ingredients = {this.state.ingredients} purchaseCancelled={this.state.purchaseCancellHandler} purchaseContinued={this.state.purchaseContinuedHandler}/> </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls  ingredientAdded={this.addIngredientHandler} ingredientSub = {this.removeIngridentHandeler} disabled={disabledInfo} price={this.state.totalPrice} purchaseable={purchaseable} ordered={this.purchasingHandler}/>
             </Aux>
