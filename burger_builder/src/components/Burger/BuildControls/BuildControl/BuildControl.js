@@ -5,11 +5,16 @@ const buildControl = (props)=>{
   return(
     <div className = {classes.BuildControl}>
       <div className = {classes.Label}> {props.label} </div>
-      <button classes = {classes.Less}>Less</button>
+
+      <button classes = {classes.Less} onClick={props.sub} disabled ={props.disabled}>Less</button>
       <button className={classes.More} onClick={props.added}>More</button>
+
 
     </div>
   );
 }
 
 export default buildControl;
+
+// Notes
+  /*disabled is a default attribute for btn tag which can be set to true/false*/
